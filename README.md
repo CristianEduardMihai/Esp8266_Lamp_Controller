@@ -14,8 +14,8 @@ This project is ideal for minimal ESP boards, like the ESP-01, where IO is limit
 - 🌐 **Captive Portal Fallback**  
   If no Wi-Fi credentials are stored or connection fails, the ESP launches its own AP and captive portal.
 
-- 💾 **EEPROM Wi-Fi Credentials**  
-  Credentials are stored in EEPROM, so the ESP reconnects automatically on reboot.
+* 📡 **Fully Offline Mode**
+  Works entirely without internet access – you can control the lamp locally through the built-in Wi-Fi access point and web interface. Wi-Fi setup is optional.
 
 - ⏲️ **Auto-Off Timer**  
   Set an optional timer to automatically turn off the lamp after a specified number of minutes.
@@ -24,10 +24,13 @@ This project is ideal for minimal ESP boards, like the ESP-01, where IO is limit
   Press the GPIO1 (TX pin) button to toggle between ON (100%) and OFF.
 
 - 💡 **PWM Dimming**  
-  Controls LED brightness through PWM on GPIO2 (mapped for use with a high-side PNP transistor).
+  Controls LED brightness through PWM on GPIO2.
 
 - 🛠️ **Minimalist, Responsive UI**  
-  Clean design, mobile-friendly interface, and intuitive controls.
+  Clean design and intuitive controls.
+
+- 💾 **EEPROM Wi-Fi Credentials**  
+  Credentials are stored in EEPROM, so the ESP reconnects automatically on reboot.
 
 ---
 
@@ -35,14 +38,14 @@ This project is ideal for minimal ESP boards, like the ESP-01, where IO is limit
 
 Main Control Page | Wi-Fi Setup Page
 :-------------------------:|:-------------------------:
-![Main Page](screenshots/main.png) | ![Wi-Fi Page](screenshots/wifi.png)
+![Main Page](assets/images/main.png) | ![Wi-Fi Page](assets/images/wifi.png)
 
 ---
 
 ## 🔌 Hardware Requirements
 
 - **ESP8266 board** (tested on **ESP-01**)
-- GPIO2 connected to PNP transistor or LED (high-side)
+- GPIO2 connected to PNP transistor or LED
 - GPIO1 wired to a button (active LOW)
 - 3.3V power supply (with enough current for Wi-Fi and LEDs)
 
@@ -74,6 +77,14 @@ Upload the sketch using the Arduino IDE or PlatformIO. Make sure you've selected
 
 ---
 
+### 🔌 Circuit Diagram
+
+Below is the wiring diagram for the lamp, created in Fritzing. It shows how to connect the ESP8266 (tested on ESP-01), a PNP transistor for PWM control, and a button to toggle the lamp.
+
+> 📁 You can find the editable `.fzz` project in [`assets/`](assets/esp8266_lamp.fzz).
+
+![Wiring Diagram](assets/images/esp8266_lamp.jpg)
+
 ## ⚙️ Web Interface Overview
 
 - **Slider**: Controls lamp brightness (0–100%)
@@ -91,6 +102,9 @@ Upload the sketch using the Arduino IDE or PlatformIO. Make sure you've selected
 
 ---
 
+## 🧼 Clearing EEPROM
+To reset the stored Wi-Fi credentials, you can use the clear_eeprom sketch included in the repository. This will wipe the saved SSID and password, forcing the lamp to boot into Access Point mode on next startup.
+
 ## 🧪 Tested With
 
 - **ESP-01** (ESP8266)
@@ -105,7 +119,6 @@ Upload the sketch using the Arduino IDE or PlatformIO. Make sure you've selected
 - **ESP-01 can't reset itself** — manual power cycle needed after saving new Wi-Fi settings.
 - Only two GPIOs are used (TX as button, GPIO2 as output).
 - No HTTPS support in web UI.
-- Not suitable for low-side switching out of the box (PWM logic is inverted for high-side).
 
 ---
 
