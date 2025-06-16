@@ -36,9 +36,9 @@ This project is ideal for minimal ESP boards, like the ESP-01, where IO is limit
 
 ## 📷 Screenshots
 
-Main Control Page | Wi-Fi Setup Page
+Main Control Page | Setup Page
 :-------------------------:|:-------------------------:
-![Main Page](assets/images/main.png) | ![Wi-Fi Page](assets/images/wifi.png)
+![Main Page](assets/images/main.png) | ![Setup Page](assets/images/setup.png)
 
 ---
 
